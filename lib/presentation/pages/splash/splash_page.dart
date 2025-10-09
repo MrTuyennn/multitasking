@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multitasking/app/extensions/build_context_extension.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -10,6 +11,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(body: Center(child: Text(context.l10n.txt_hello)));
   }
 }
