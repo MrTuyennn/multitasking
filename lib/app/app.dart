@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:multitasking/app/extensions/build_context_extension.dart';
 import 'package:multitasking/app/l10n/generated/app_localizations.dart';
 import 'package:multitasking/app/l10n/l10n.dart';
 import 'package:multitasking/app/router/path_router.dart';
