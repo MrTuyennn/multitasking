@@ -1,0 +1,13 @@
+//
+//  toktok-prod.xcconfig
+//  Runner
+//
+//  Created by Nguyen Ngoc Tuyen on 22/9/25.
+//
+
+// prod
+APP_APP_NAME=톡톡클럽
+APP_DISPLAY_NAME=톡톡클럽
+APP_BUILD_NAME=1.0.0
+APP_BUILD_NUMBER=14
+FLUTTER_TARGET=lib/app/main_prod.dart

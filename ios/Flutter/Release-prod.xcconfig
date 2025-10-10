@@ -1,0 +1,12 @@
+//
+//  Release-prod.swift
+//  Runner
+//
+//  Created by Nguyen Ngoc Tuyen on 22/9/25.
+//
+
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release-prod.xcconfig"
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
+#include "Generated.xcconfig"
+#include "config/multi-prod.xcconfig"
+//#include "TokTok-defaults.xcconfig"

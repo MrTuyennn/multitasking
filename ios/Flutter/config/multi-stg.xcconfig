@@ -1,0 +1,13 @@
+//
+//  toktok-stg.xcconfig
+//  Runner
+//
+//  Created by Nguyen Ngoc Tuyen on 22/9/25.
+//
+
+// stg
+APP_APP_NAME=톡톡클럽 STG
+APP_DISPLAY_NAME=톡톡클럽 STG
+APP_BUILD_NAME=1.0.0
+APP_BUILD_NUMBER=40
+FLUTTER_TARGET=lib/app/main_stag.dart
