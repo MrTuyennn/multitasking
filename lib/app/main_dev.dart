@@ -4,5 +4,7 @@ import 'package:multitasking/main.dart' as common;
 
 void main() async {
   final config = await AppConfigProvider.loadConfig(Environment.DEV.name);
-  common.main(config);
+  print(config.env.name);
+  AppConfigManager.instance.setConfig(config);
+  common.main();
 }

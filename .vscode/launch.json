@@ -18,7 +18,7 @@
         "name": "stg",
         "type": "dart",
         "request": "launch",
-        "program": "lib/app/main_stg.dart",
+        "program": "lib/app/main_stag.dart",
         "args": [
         "--flavor",
         "stag",

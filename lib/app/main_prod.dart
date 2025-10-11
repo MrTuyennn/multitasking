@@ -6,5 +6,6 @@ void main() async {
   final config = await AppConfigProvider.loadConfig(
     Environment.PRODUCTION.name,
   );
-  common.main(config);
+  AppConfigManager.instance.setConfig(config);
+  common.main();
 }

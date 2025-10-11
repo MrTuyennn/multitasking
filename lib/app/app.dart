@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:multitasking/app/config/evn.dart';
+import 'package:multitasking/app/config/app_config.dart';
 import 'package:multitasking/app/l10n/generated/app_localizations.dart';
 import 'package:multitasking/app/l10n/l10n.dart';
 import 'package:multitasking/app/router/path_router.dart';
@@ -8,9 +8,7 @@ import 'package:multitasking/app/router/router.dart';
 import 'package:multitasking/app/theme/app_theme.dart';
 
 class App extends StatefulWidget {
-  const App({super.key, required this.env});
-
-  final AppConfigProvider env;
+  const App({super.key});
 
   @override
   State<App> createState() => _AppState();
@@ -20,7 +18,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo ${widget.env}',
+      title: 'Flutter Demo ',
       // localization
       supportedLocales: L10n.all,
       locale: AppConfig.defaultLanguage,
@@ -42,8 +40,12 @@ class _AppState extends State<App> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Flutter Demo ${widget.env.baseUrl}"),
-              Text("BaseUrl ${widget.env.appId}"),
+              Text(
+                "Flutter Demo ${AppConfigManager.instance.config.configProvider.baseUrl}",
+              ),
+              Text(
+                "BaseUrl ${AppConfigManager.instance.config.configProvider.apiKey}",
+              ),
             ],
           ),
         ),

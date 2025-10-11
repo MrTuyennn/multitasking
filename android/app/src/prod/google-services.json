@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "408181053361",
+    "project_id": "junnotiservice",
+    "storage_bucket": "junnotiservice.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408181053361:android:c1f3c8d4d0c869c257cf90",
+        "android_client_info": {
+          "package_name": "com.example.multitasking.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrDLk_yaNuqvHdDQZrW8ZnbectoGUCjdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408181053361:android:be509a07cec72ced57cf90",
+        "android_client_info": {
+          "package_name": "com.example.multitasking.stag"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrDLk_yaNuqvHdDQZrW8ZnbectoGUCjdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408181053361:android:59a877465be94f0a57cf90",
+        "android_client_info": {
+          "package_name": "com.example.multitasking.toktok"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrDLk_yaNuqvHdDQZrW8ZnbectoGUCjdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

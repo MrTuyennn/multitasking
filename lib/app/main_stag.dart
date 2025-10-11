@@ -3,6 +3,7 @@ import 'package:multitasking/app/config/evn.dart';
 import 'package:multitasking/main.dart' as common;
 
 void main() async {
-  final config = await AppConfigProvider.loadConfig(Environment.DEV.name);
-  common.main(config);
+  final config = await AppConfigProvider.loadConfig(Environment.STAGING.name);
+  AppConfigManager.instance.setConfig(config);
+  common.main();
 }

@@ -22,15 +22,13 @@ class AppConfigProvider {
     required this.clientId,
   });
 
-  static Future<AppConfigProvider> loadConfig(String? param) async {
+  static Future<Config> loadConfig(String? param) async {
     var env = Environment.DEV;
     if (param?.toUpperCase() == Environment.DEV.name) {
       await dotenv.load(fileName: "env/develop.env");
     } else if (param?.toUpperCase() == Environment.STAGING.name) {
-      env = Environment.STAGING;
       await dotenv.load(fileName: "env/staging.env");
     } else {
-      env = Environment.PRODUCTION;
       await dotenv.load(fileName: "env/production.env");
     }
     final config = AppConfigProvider(
@@ -42,7 +40,13 @@ class AppConfigProvider {
       webBaseUrl: dotenv.env['WEB_BASE_URL'] ?? '',
       clientId: dotenv.env['APPLE_CLIENT_ID'] ?? '',
     );
-    return config;
-    // return AppConfig(appConfigProvider: config, env: env);
+    return Config(configProvider: config, env: env);
   }
+}
+
+class Config {
+  final AppConfigProvider configProvider;
+  final Environment env;
+
+  Config({required this.configProvider, required this.env});
 }
