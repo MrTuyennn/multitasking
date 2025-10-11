@@ -10,7 +10,7 @@ import 'package:multitasking/app/theme/app_theme.dart';
 class App extends StatefulWidget {
   const App({super.key, required this.env});
 
-  final String env;
+  final AppConfigProvider env;
 
   @override
   State<App> createState() => _AppState();
@@ -42,8 +42,8 @@ class _AppState extends State<App> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Flutter Demo ${widget.env}"),
-              Text("BaseUrl ${EvnApp.baseURL}"),
+              Text("Flutter Demo ${widget.env.baseUrl}"),
+              Text("BaseUrl ${widget.env.appId}"),
             ],
           ),
         ),

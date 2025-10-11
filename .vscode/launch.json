@@ -8,33 +8,30 @@
         "name": "dev",
         "type": "dart",
         "request": "launch",
-        "program": "lib/app/app_dev.dart",
+        "program": "lib/app/main_dev.dart",
         "args": [
         "--flavor",
         "dev",
-        "--dart-define-from-file=env/develop.json"
      ]
     },
     {
         "name": "stg",
         "type": "dart",
         "request": "launch",
-        "program": "lib/app/app_stg.dart",
+        "program": "lib/app/main_stg.dart",
         "args": [
         "--flavor",
         "stag",
-        "--dart-define-from-file=env/stagging.json"
      ]
     },
     {
         "name": "prod",
         "type": "dart",
         "request": "launch",
-        "program": "lib/app/app_prod.dart",
+        "program": "lib/app/main_prod.dart",
         "args": [
         "--flavor",
         "prod",
-        "--dart-define-from-file=env/production.json"
      ]
     },
     {
@@ -45,7 +42,6 @@
         "args": [
         "--flavor",
         "dev",
-        "--dart-define-from-file=env/develop.json"
      ]
     },
     {
@@ -56,7 +52,6 @@
         "args": [
         "--flavor",
         "stag",
-        "--dart-define-from-file=env/stagging.json"
      ]
     },
     {
@@ -67,7 +62,6 @@
         "args": [
         "--flavor",
         "prod",
-        "--dart-define-from-file=env/production.json"
      ]
     },
     
