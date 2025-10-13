@@ -8,7 +8,7 @@ import 'package:multitasking/firebase_options_prod.dart' as prod;
 import 'package:multitasking/firebase_options_stag.dart' as stg;
 
 void main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await initializeFirebaseApp(AppConfigManager.instance.config);
   runApp(App());
 }

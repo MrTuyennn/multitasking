@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:multitasking/app/config/app_config.dart';
 import 'package:multitasking/app/l10n/generated/app_localizations.dart';
 import 'package:multitasking/app/l10n/l10n.dart';
+import 'package:multitasking/app/log/logger_service_impl.dart';
 import 'package:multitasking/app/router/path_router.dart';
 import 'package:multitasking/app/router/router.dart';
 import 'package:multitasking/app/theme/app_theme.dart';
@@ -15,6 +16,12 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  @override
+  void initState() {
+    logger.e(AppConfigManager.instance.config.configProvider);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
