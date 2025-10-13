@@ -1,16 +1,19 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:multitasking/app/app.dart';
+import 'package:multitasking/app/bloc/multi_bloc.dart';
 import 'package:multitasking/app/config/app_config.dart';
 import 'package:multitasking/app/config/evn.dart';
+import 'package:multitasking/core/di/di.dart';
 import 'package:multitasking/firebase_options_dev.dart' as dev;
 import 'package:multitasking/firebase_options_prod.dart' as prod;
 import 'package:multitasking/firebase_options_stag.dart' as stg;
 
 void main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
   await initializeFirebaseApp(AppConfigManager.instance.config);
-  runApp(App());
+  runApp(MultiBloc(child: App()));
 }
 
 Future<void> initializeFirebaseApp(Config config) async {

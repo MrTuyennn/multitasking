@@ -42,21 +42,6 @@ class _AppState extends State<App> {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Flutter Demo ${AppConfigManager.instance.config.configProvider.baseUrl}",
-              ),
-              Text(
-                "BaseUrl ${AppConfigManager.instance.config.configProvider.apiKey}",
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
