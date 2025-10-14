@@ -7,6 +7,7 @@ import 'package:multitasking/app/log/logger_service_impl.dart';
 import 'package:multitasking/app/router/path_router.dart';
 import 'package:multitasking/app/router/router.dart';
 import 'package:multitasking/app/theme/app_theme.dart';
+import 'package:multitasking/core/di/di.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -36,6 +37,9 @@ class _AppState extends State<App> {
         GlobalCupertinoLocalizations.delegate,
       ],
       // navigation
+      navigatorKey: getIt<GlobalKey<NavigatorState>>(
+        instanceName: 'navigatorKey',
+      ),
       initialRoute: PathRouter.splash,
       onGenerateRoute: AppRouter.generateRoutes,
       // Theme

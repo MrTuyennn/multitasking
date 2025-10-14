@@ -1,9 +1,13 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class SharedPreference {
   static const String _accessTokenKey = "access_token";
 
   late final FlutterSecureStorage _secureStorage;
+
+  SharedPreference(this._secureStorage);
 
   Future<void> saveToken(String token) async {
     await _secureStorage.write(key: _accessTokenKey, value: token);
@@ -11,5 +15,9 @@ class SharedPreference {
 
   Future<String> getToken() async {
     return await _secureStorage.read(key: _accessTokenKey) ?? "";
+  }
+
+  Future clearToken() async {
+    return await _secureStorage.deleteAll();
   }
 }
