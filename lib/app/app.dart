@@ -26,6 +26,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo ',
       // localization
       supportedLocales: L10n.all,
