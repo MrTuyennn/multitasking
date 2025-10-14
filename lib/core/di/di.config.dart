@@ -18,9 +18,15 @@ import 'package:multitasking/core/di/di_module.dart' as _i87;
 import 'package:multitasking/data/datasources/preference/shared_preference.dart'
     as _i614;
 import 'package:multitasking/data/datasources/remote/api_service.dart' as _i281;
+import 'package:multitasking/data/datasources/remote/fcm_handler.dart' as _i481;
+import 'package:multitasking/data/datasources/remote/fcm_service.dart' as _i838;
 import 'package:multitasking/data/repositories/auth_repository_impl.dart'
     as _i965;
+import 'package:multitasking/data/repositories/notification_repository_impl.dart'
+    as _i384;
 import 'package:multitasking/domain/repositories/auth_repository.dart' as _i839;
+import 'package:multitasking/domain/repositories/notification_repository.dart'
+    as _i236;
 import 'package:multitasking/domain/usecases/login_usecase.dart' as _i251;
 import 'package:multitasking/presentation/pages/auth/login/bloc/login_bloc.dart'
     as _i1005;
@@ -33,6 +39,8 @@ extension GetItInjectableX on _i174.GetIt {
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final diModule = _$DiModule();
+    gh.lazySingleton<_i838.FcmService>(() => diModule.fcmService);
+    gh.lazySingleton<_i481.FcmHandler>(() => diModule.fcmHandler);
     await gh.lazySingletonAsync<_i558.FlutterSecureStorage>(
       () => diModule.secureStorage(),
       preResolve: true,
@@ -45,6 +53,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i614.SharedPreference>(
       () => _i614.SharedPreference(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.lazySingleton<_i236.NotificationRepository>(
+      () => _i384.NotificationRepositoryImpl(gh<_i838.FcmService>()),
     );
     gh.factory<_i251.LoginUsecase>(
       () => _i251.LoginUsecase(gh<_i839.AuthRepository>()),

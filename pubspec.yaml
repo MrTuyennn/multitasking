@@ -50,6 +50,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   retrofit: ^4.7.3
   retrofit_generator: ^10.0.6
+  firebase_messaging: ^16.0.3
   # flutter_secure_storage: ^9.0.0
 
 dev_dependencies:
