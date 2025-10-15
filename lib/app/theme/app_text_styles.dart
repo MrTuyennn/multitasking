@@ -6,7 +6,7 @@ class AppTextStyles {
   AppTextStyles._();
 
   // Font Family
-  static const String fontFamily = 'Quicksand';
+  static const String fontFamily = 'GoogleSansCode';
 
   // Display Styles (Large headers)
   static const TextStyle displayLarge = TextStyle(

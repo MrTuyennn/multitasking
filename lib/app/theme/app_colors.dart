@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class AppColors {
   AppColors._();
@@ -89,4 +90,7 @@ class AppColors {
     Color(0xFF795548), // Brown
     Color(0xFF607D8B), // Blue Grey
   ];
+
+  // color app container
+  static  Color appColor = HexColor("#007A8C");
 }

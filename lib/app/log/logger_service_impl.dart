@@ -20,7 +20,6 @@ class LoggerServiceImpl extends LoggerService {
       lineLength: 120,
       colors: true,
       printEmojis: true,
-
     ),
   );
 

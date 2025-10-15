@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:multitasking/app/app.dart';
 import 'package:multitasking/app/bloc/multi_bloc.dart';
 import 'package:multitasking/app/config/app_config.dart';
@@ -13,6 +14,12 @@ void main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   await initializeFirebaseApp(AppConfigManager.instance.config);
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.light,
+    ),
+  );
   runApp(MultiBloc(child: App()));
 }
 

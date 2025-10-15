@@ -10,4 +10,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get txt_hello => 'Hello';
+
+  @override
+  String get txt_ready_to_explore_beyond_boundaries =>
+      'Ready to explore\n beyond boundaries?';
+
+  @override
+  String get txt_your_journey_starts_here => 'Your Journey Starts Here';
 }

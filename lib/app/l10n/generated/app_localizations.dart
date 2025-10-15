@@ -103,6 +103,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hello'**
   String get txt_hello;
+
+  /// No description provided for @txt_ready_to_explore_beyond_boundaries.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to explore\n beyond boundaries?'**
+  String get txt_ready_to_explore_beyond_boundaries;
+
+  /// No description provided for @txt_your_journey_starts_here.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Journey Starts Here'**
+  String get txt_your_journey_starts_here;
 }
 
 class _AppLocalizationsDelegate
