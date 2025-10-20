@@ -107,7 +107,7 @@ abstract class AppLocalizations {
   /// No description provided for @txt_ready_to_explore_beyond_boundaries.
   ///
   /// In en, this message translates to:
-  /// **'Ready to explore\n beyond boundaries?'**
+  /// **'Ready to explore beyond boundaries?'**
   String get txt_ready_to_explore_beyond_boundaries;
 
   /// No description provided for @txt_your_journey_starts_here.

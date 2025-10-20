@@ -13,7 +13,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get txt_ready_to_explore_beyond_boundaries =>
-      'Sẵn sàng khám phá\n vượt ra ngoài ranh giới?';
+      'Sẵn sàng khám phá vượt ra ngoài ranh giới?';
 
   @override
   String get txt_your_journey_starts_here =>

@@ -142,6 +142,7 @@ class OnBoarding2 extends StatelessWidget {
         children: [
           SizedBox(height: context.pT),
           Container(
+            margin: AppDimensions.paddingHorizontalM,
             padding: AppDimensions.paddingAllS,
             decoration: BoxDecoration(
               color: AppColors.background,
@@ -151,7 +152,7 @@ class OnBoarding2 extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text('english'),
-                Icon(Icons.arrow_downward)
+                Icon(Icons.keyboard_arrow_down_outlined)
               ],
             ),
           ),
