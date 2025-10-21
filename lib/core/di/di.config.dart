@@ -28,6 +28,8 @@ import 'package:multitasking/domain/repositories/auth_repository.dart' as _i839;
 import 'package:multitasking/domain/repositories/notification_repository.dart'
     as _i236;
 import 'package:multitasking/domain/usecases/login_usecase.dart' as _i251;
+import 'package:multitasking/presentation/bloc/translate/translate_cubit.dart'
+    as _i365;
 import 'package:multitasking/presentation/pages/auth/login/bloc/login_bloc.dart'
     as _i1005;
 
@@ -39,6 +41,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final diModule = _$DiModule();
+    gh.factory<_i365.TranslateCubit>(() => _i365.TranslateCubit());
     gh.lazySingleton<_i838.FcmService>(() => diModule.fcmService);
     gh.lazySingleton<_i481.FcmHandler>(() => diModule.fcmHandler);
     await gh.lazySingletonAsync<_i558.FlutterSecureStorage>(

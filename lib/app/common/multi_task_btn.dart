@@ -23,33 +23,59 @@ class MultiTaskBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool disabled = isLoading || !isEnabled;
+
     return ElevatedButton(
-      onPressed: (isLoading || !isEnabled) ? null : onPressed,
+      onPressed: disabled ? null : onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.appColor,
+        foregroundColor: Colors.white,
         disabledBackgroundColor: AppColors.appColor.withAlpha(100),
-        minimumSize: Size(double.infinity, AppDimensions.buttonHeightL),
+        disabledForegroundColor: Colors.white.withAlpha(180),
+        minimumSize: Size.fromHeight(AppDimensions.buttonHeightL),
         shape: RoundedRectangleBorder(
           borderRadius: AppDimensions.borderRadiusM,
         ),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
       ),
-      child: isLoading
-          ? const SizedBox(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Opacity(
+            opacity: isLoading ? 0.0 : 1.0,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (iconLeft != null) ...[iconLeft!, const SizedBox(width: 8)],
+                Flexible(
+                  child: Text(
+                    text,
+                    style: AppTextStyles.buttonText,
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                if (iconRight != null) ...[
+                  const SizedBox(width: 8),
+                  iconRight!,
+                ],
+              ],
+            ),
+          ),
+
+          if (isLoading)
+            const SizedBox(
               width: 20,
               height: 20,
               child: CircularProgressIndicator(
                 strokeWidth: 2,
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               ),
-            )
-          : Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (iconLeft != null) iconLeft!,
-                Text(text, style: AppTextStyles.buttonText),
-                if (iconRight != null) iconRight!,
-              ],
             ),
+        ],
+      ),
     );
   }
 }

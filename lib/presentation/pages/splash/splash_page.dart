@@ -5,6 +5,7 @@ import 'package:multitasking/app/extensions/build_context_extension.dart';
 import 'package:multitasking/app/theme/app_colors.dart';
 import 'package:multitasking/app/theme/app_dimensions.dart';
 import 'package:multitasking/app/theme/app_text_styles.dart';
+import 'package:multitasking/presentation/pages/splash/components/popup_menu_translate.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -143,18 +144,19 @@ class OnBoarding2 extends StatelessWidget {
           SizedBox(height: context.pT),
           Container(
             margin: AppDimensions.paddingHorizontalM,
-            padding: AppDimensions.paddingAllS,
+            padding: AppDimensions.paddingHorizontalM,
             decoration: BoxDecoration(
               color: AppColors.background,
               borderRadius: context.borderRadiusM,
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('english'),
-                Icon(Icons.keyboard_arrow_down_outlined)
-              ],
-            ),
+            child: PopupMenuTranslate(),
+            // Row(
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     Text('english'),
+            //     Icon(Icons.keyboard_arrow_down_outlined)
+            //   ],
+            // ),
           ),
           const Spacer(),
           Center(
