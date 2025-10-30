@@ -31,8 +31,10 @@ extension BuildContextExtensions on BuildContext {
   bool get keyboardVisible => viewInsets.bottom > 0;
   Orientation get orientation => mq.orientation;
   double get pT => kToolbarHeight;
+  double get pB => kBottomNavigationBarHeight;
 
   // Edge Insets
+  EdgeInsets get paddingSafe => EdgeInsets.symmetric(vertical: kToolbarHeight);
   EdgeInsets get paddingAllXS => AppDimensions.paddingAllXS;
   EdgeInsets get paddingAllS => AppDimensions.paddingAllS;
   EdgeInsets get paddingAllM => AppDimensions.paddingAllM;

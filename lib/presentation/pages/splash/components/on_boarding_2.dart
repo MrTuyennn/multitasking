@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:multitasking/app/assets/images.dart';
 import 'package:multitasking/app/common/index.dart';
 import 'package:multitasking/app/extensions/build_context_extension.dart';
+import 'package:multitasking/app/router/path_router.dart';
 import 'package:multitasking/app/theme/app_colors.dart';
 import 'package:multitasking/app/theme/app_dimensions.dart';
 import 'package:multitasking/app/theme/app_text_styles.dart';
@@ -82,7 +82,12 @@ class OnBoarding2 extends StatelessWidget {
                       size: AppDimensions.iconM,
                     ),
                     text: context.l10n.txt_your_journey_starts_here,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        PathRouter.home,
+                      );
+                    },
                   ),
                 ],
               ),
