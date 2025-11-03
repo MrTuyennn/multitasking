@@ -17,6 +17,7 @@ class OverlayFramePage extends StatefulWidget {
 }
 
 class _OverlayFramePageState extends State<OverlayFramePage> {
+  final capViewChannel = MethodChannel('genAIImage');
   // kích thước cơ bản của khung
   double baseWidth = 120;
   double baseHeight = 120;
@@ -54,6 +55,9 @@ class _OverlayFramePageState extends State<OverlayFramePage> {
       final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       final bytes = byteData?.buffer.asUint8List();
       logger.d('Captured bytes length: ${bytes?.length}');
+      capViewChannel.invokeMethod('methodGenAiImage', {
+        'imageBytes': byteData?.buffer.asUint8List(),
+      });
       setState(() {
         _lastCapturedImage = image;
         _showPreview = true;

@@ -13,7 +13,7 @@ import 'package:multitasking/firebase_options_stag.dart' as stg;
 void main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  await initializeFirebaseApp(AppConfigManager.instance.config);
+ // await initializeFirebaseApp(AppConfigManager.instance.config);
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
