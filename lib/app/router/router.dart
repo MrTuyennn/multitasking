@@ -14,6 +14,8 @@ class AppRouter {
         return slideFromBottomRoute(RegisterPage(), settings);
       case PathRouter.home:
         return _buildPageRoute(HomePage(), settings);
+      case PathRouter.editor:
+        return _buildPageRoute(EditorPage(), settings);
       default:
         return _buildPageRoute(
           const Scaffold(body: Center(child: Text('No route defined'))),

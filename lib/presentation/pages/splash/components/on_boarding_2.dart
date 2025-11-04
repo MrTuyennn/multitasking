@@ -85,7 +85,7 @@ class OnBoarding2 extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        PathRouter.home,
+                        PathRouter.editor,
                       );
                     },
                   ),

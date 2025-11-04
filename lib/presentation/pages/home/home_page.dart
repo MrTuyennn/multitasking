@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:multitasking/presentation/pages/home/bouding.dart';
+import 'package:multitasking/app/components/bouding.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
