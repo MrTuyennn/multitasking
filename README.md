@@ -14,3 +14,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+./luna gen          # Generate code
+./luna get          # Get packages
+./luna clean        # Clean và get packages
+./luna locale       # Generate locale
+./luna cleanIOS     # Clean iOS và mở Xcode
