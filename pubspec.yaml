@@ -48,7 +48,7 @@ dependencies:
   equatable: ^2.0.7
   dio: ^5.9.0
   flutter_bloc: ^9.1.1
-  retrofit: ^4.7.3
+  retrofit: ^4.9.1
   retrofit_generator: ^10.0.6
   firebase_messaging: ^16.0.3
   hexcolor: ^3.0.1
