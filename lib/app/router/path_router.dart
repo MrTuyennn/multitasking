@@ -5,4 +5,5 @@ class PathRouter {
   static const String register = '/register';
   static const String home = '/home';
   static const String editor = '/editor';
+  static const String test = '/test';
 }
