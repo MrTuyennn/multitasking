@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multitasking/app/isolate/memory_isolate.dart';
 import 'package:multitasking/app/router/path_router.dart';
 import 'package:multitasking/presentation/pages/index.dart';
 
@@ -16,6 +17,8 @@ class AppRouter {
         return _buildPageRoute(HomePage(), settings);
       case PathRouter.editor:
         return _buildPageRoute(EditorPage(), settings);
+      case PathRouter.test:
+        return _buildPageRoute(MemoryIsolate(), settings);
       default:
         return _buildPageRoute(
           const Scaffold(body: Center(child: Text('No route defined'))),
