@@ -28,3 +28,129 @@ workflows:
         notify:
           success: true
           failure: true
+
+  # Workflow cho Production - Build AAB
+  android-prod-aab:
+    name: Android Prod AAB Build
+    max_build_duration: 60
+    instance_type: linux_x2
+    environment:
+      flutter: stable
+      groups:
+        - keystore_credentials # Android signing credentials
+      vars:
+        FLAVOR: "prod"
+    scripts:
+      - name: Get Flutter dependencies
+        script: |
+          flutter pub get
+          flutter pub run build_runner build --delete-conflicting-outputs
+      - name: Setup keystore
+        script: |
+          # Create key.properties file from environment variables if available
+          if [ -n "$CM_KEYSTORE_PATH" ] && [ -n "$CM_KEYSTORE_PASSWORD" ] && [ -n "$CM_KEY_ALIAS" ] && [ -n "$CM_KEY_PASSWORD" ]; then
+            echo "Creating key.properties from environment variables"
+            cat > android/key.properties << EOL
+          storeFile=$CM_KEYSTORE_PATH
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          keyPassword=$CM_KEY_PASSWORD
+          EOL
+          fi
+      - name: Setup keystore
+        script: |
+          # Create key.properties file from environment variables if available
+          if [ -n "$CM_KEYSTORE_PATH" ] && [ -n "$CM_KEYSTORE_PASSWORD" ] && [ -n "$CM_KEY_ALIAS" ] && [ -n "$CM_KEY_PASSWORD" ]; then
+            echo "Creating key.properties from environment variables"
+            cat > android/key.properties << EOL
+          storeFile=$CM_KEYSTORE_PATH
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          keyPassword=$CM_KEY_PASSWORD
+          EOL
+          fi
+      - name: Build Android App Bundle
+        script: |
+          flutter build appbundle --flavor prod --dart-define=ENV=PROD --release
+          # Verify AAB file was created
+          if [ -f "build/app/outputs/bundle/prodRelease/app-prod-release.aab" ]; then
+            echo "✓ AAB file created successfully"
+            ls -lh build/app/outputs/bundle/prodRelease/*.aab
+          else
+            echo "✗ AAB file not found. Listing build directory:"
+            find build/app/outputs -name "*.aab" -o -name "*.apk" | head -20
+            exit 1
+          fi
+    artifacts:
+      - build/app/outputs/bundle/prodRelease/*.aab
+      - build/app/outputs/mapping/prod/release/mapping.txt
+    publishing:
+      email:
+        recipients:
+          - nguyenngoctuyen188@gmail.com
+        notify:
+          success: true
+          failure: true
+
+  # Workflow cho Staging - Build AAB
+  android-stag-aab:
+    name: Android Stag AAB Build
+    max_build_duration: 60
+    instance_type: linux_x2
+    environment:
+      flutter: stable
+      groups:
+        - keystore_credentials # Android signing credentials
+      vars:
+        FLAVOR: "stag"
+    scripts:
+      - name: Get Flutter dependencies
+        script: |
+          flutter pub get
+          flutter pub run build_runner build --delete-conflicting-outputs
+      - name: Setup keystore
+        script: |
+          # Create key.properties file from environment variables if available
+          if [ -n "$CM_KEYSTORE_PATH" ] && [ -n "$CM_KEYSTORE_PASSWORD" ] && [ -n "$CM_KEY_ALIAS" ] && [ -n "$CM_KEY_PASSWORD" ]; then
+            echo "Creating key.properties from environment variables"
+            cat > android/key.properties << EOL
+          storeFile=$CM_KEYSTORE_PATH
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          keyPassword=$CM_KEY_PASSWORD
+          EOL
+          fi
+      - name: Setup keystore
+        script: |
+          # Create key.properties file from environment variables if available
+          if [ -n "$CM_KEYSTORE_PATH" ] && [ -n "$CM_KEYSTORE_PASSWORD" ] && [ -n "$CM_KEY_ALIAS" ] && [ -n "$CM_KEY_PASSWORD" ]; then
+            echo "Creating key.properties from environment variables"
+            cat > android/key.properties << EOL
+          storeFile=$CM_KEYSTORE_PATH
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          keyPassword=$CM_KEY_PASSWORD
+          EOL
+          fi
+      - name: Build Android App Bundle
+        script: |
+          flutter build appbundle --flavor stag --dart-define=ENV=STAG --release
+          # Verify AAB file was created
+          if [ -f "build/app/outputs/bundle/stagRelease/app-stag-release.aab" ]; then
+            echo "✓ AAB file created successfully"
+            ls -lh build/app/outputs/bundle/stagRelease/*.aab
+          else
+            echo "✗ AAB file not found. Listing build directory:"
+            find build/app/outputs -name "*.aab" -o -name "*.apk" | head -20
+            exit 1
+          fi
+    artifacts:
+      - build/app/outputs/bundle/stagRelease/*.aab
+      - build/app/outputs/mapping/stag/release/mapping.txt
+    publishing:
+      email:
+        recipients:
+          - nguyenngoctuyen188@gmail.com
+        notify:
+          success: true
+          failure: true
