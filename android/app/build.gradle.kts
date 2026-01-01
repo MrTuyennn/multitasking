@@ -58,7 +58,7 @@ android {
         create("prod") {
             dimension = "version"
             resValue("string", "app_name", "Multitasking prod")
-            applicationIdSuffix = ".prod"
+            applicationId = "com.example.multitasking.toktok"
             versionNameSuffix = "-prod"
         }
     }
