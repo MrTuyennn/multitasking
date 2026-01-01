@@ -33,8 +33,17 @@ Future<void> initializeFirebaseApp(Config config) async {
   };
   await Firebase.initializeApp(options: firebaseOptions);
   final fcmHandler = getIt<FcmHandler>();
-  await fcmHandler.requestPermission();
   final fcmService = getIt<FcmService>();
-  String token = await fcmService.getToken();
-  logger.d(token);
+  await fcmHandler.requestPermission();
+
+  // Get token asynchronously - don't block app startup
+  fcmService.getToken().then((token) {
+    if (token != null && token.isNotEmpty) {
+      logger.d('FCM Token: $token');
+    } else {
+      logger.d('FCM Token not available yet, will be available via token refresh listener');
+    }
+  }).catchError((error) {
+    logger.d('Error getting FCM token: $error');
+  });
 }

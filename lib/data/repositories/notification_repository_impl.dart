@@ -16,7 +16,7 @@ class NotificationRepositoryImpl extends NotificationRepository {
   Future<Either<Failure, String>> getFCMToken() async {
     try {
       final token = await _fcmService.getToken();
-      return Right(token);
+      return Right(token ?? '');
     } catch (e) {
       throw UnimplementedError();
     }
