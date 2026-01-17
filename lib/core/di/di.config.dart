@@ -15,6 +15,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:multitasking/core/di/di_module.dart' as _i87;
+import 'package:multitasking/core/errors/token/itoken_service.dart' as _i295;
+import 'package:multitasking/core/errors/token/token_service.dart' as _i441;
 import 'package:multitasking/data/datasources/preference/shared_preference.dart'
     as _i614;
 import 'package:multitasking/data/datasources/remote/api_service.dart' as _i281;
@@ -49,6 +51,12 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.lazySingleton<_i839.AuthRepository>(() => _i965.AuthRepositoryImpl());
+    gh.lazySingleton<_i236.NotificationRepository>(
+      () => _i384.NotificationRepositoryImpl(gh<_i838.FcmService>()),
+    );
+    gh.factory<_i251.LoginUsecase>(
+      () => _i251.LoginUsecase(gh<_i839.AuthRepository>()),
+    );
     gh.factory<String>(() => diModule.baseUrl(), instanceName: 'baseUrl');
     gh.lazySingleton<_i409.GlobalKey<_i409.NavigatorState>>(
       () => diModule.navigatorKey(),
@@ -57,20 +65,26 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i614.SharedPreference>(
       () => _i614.SharedPreference(gh<_i558.FlutterSecureStorage>()),
     );
-    gh.lazySingleton<_i236.NotificationRepository>(
-      () => _i384.NotificationRepositoryImpl(gh<_i838.FcmService>()),
+    gh.lazySingleton<_i361.Dio>(
+      () => diModule.tokenDio(gh<String>(instanceName: 'baseUrl')),
+      instanceName: 'tokenDio',
     );
-    gh.factory<_i251.LoginUsecase>(
-      () => _i251.LoginUsecase(gh<_i839.AuthRepository>()),
+    gh.factory<_i1005.LoginBloc>(
+      () => _i1005.LoginBloc(gh<_i251.LoginUsecase>()),
+    );
+    gh.lazySingleton<_i295.ITokenService>(
+      () => _i441.TokenService(
+        gh<_i361.Dio>(instanceName: 'tokenDio'),
+        gh<_i614.SharedPreference>(),
+      ),
     );
     gh.lazySingleton<_i361.Dio>(
       () => diModule.dio(
         gh<_i614.SharedPreference>(),
         gh<_i409.GlobalKey<_i409.NavigatorState>>(instanceName: 'navigatorKey'),
+        gh<_i295.ITokenService>(),
+        gh<String>(instanceName: 'baseUrl'),
       ),
-    );
-    gh.factory<_i1005.LoginBloc>(
-      () => _i1005.LoginBloc(gh<_i251.LoginUsecase>()),
     );
     gh.lazySingleton<_i281.ApiService>(
       () => _i281.ApiService(
