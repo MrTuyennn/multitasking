@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multitasking/app/app.dart';
 import 'package:multitasking/app/bloc/multi_bloc.dart';
 import 'package:multitasking/app/config/app_config.dart';
 import 'package:multitasking/app/config/evn.dart';
 import 'package:multitasking/app/log/logger_service_impl.dart';
 import 'package:multitasking/core/di/di.dart';
+import 'package:multitasking/core/observer/app_observer.dart';
 import 'package:multitasking/data/datasources/remote/fcm_handler.dart';
 import 'package:multitasking/data/datasources/remote/fcm_service.dart';
 import 'package:multitasking/firebase_options_dev.dart' as dev;
@@ -14,6 +16,7 @@ import 'package:multitasking/firebase_options_prod.dart' as prod;
 import 'package:multitasking/firebase_options_stag.dart' as stg;
 
 void main() async {
+  Bloc.observer = AppBlocObserver();
   await configureDependencies();
   await initializeFirebaseApp(AppConfigManager.instance.config);
   SystemChrome.setSystemUIOverlayStyle(
@@ -37,13 +40,18 @@ Future<void> initializeFirebaseApp(Config config) async {
   await fcmHandler.requestPermission();
 
   // Get token asynchronously - don't block app startup
-  fcmService.getToken().then((token) {
-    if (token != null && token.isNotEmpty) {
-      logger.d('FCM Token: $token');
-    } else {
-      logger.d('FCM Token not available yet, will be available via token refresh listener');
-    }
-  }).catchError((error) {
-    logger.d('Error getting FCM token: $error');
-  });
+  fcmService
+      .getToken()
+      .then((token) {
+        if (token != null && token.isNotEmpty) {
+          logger.d('FCM Token: $token');
+        } else {
+          logger.d(
+            'FCM Token not available yet, will be available via token refresh listener',
+          );
+        }
+      })
+      .catchError((error) {
+        logger.d('Error getting FCM token: $error');
+      });
 }

@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import 'package:multitasking/app/log/logger_service_impl.dart';
 import 'package:multitasking/core/errors/failure.dart';
 import 'package:multitasking/data/models/request/login_request.dart';
 import 'package:multitasking/domain/dto/login_dto.dart';
@@ -18,7 +17,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   void _loginSubmitted(LoginSubmitted event, Emitter<LoginState> emit) async {
-    logger.d("event $event");
     emit(LoginLoading());
     final requestLogin = LoginRequest(
       email: event.email,
@@ -30,7 +28,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailure(failure: failure));
       },
       (data) {
-        logger.d('end');
         emit(LoginSuccess(data: data));
       },
     );
