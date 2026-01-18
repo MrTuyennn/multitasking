@@ -1,6 +1,5 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-import 'package:multitasking/app/log/logger_service_impl.dart';
 import 'package:multitasking/core/errors/failure.dart';
 import 'package:multitasking/data/models/request/login_request.dart';
 import 'package:multitasking/domain/dto/login_dto.dart';
@@ -13,7 +12,6 @@ class LoginUsecase {
 
   Future<Either<Failure, LoginDto>> call(LoginRequest request) {
     return _authRepository.login(request).then((value) {
-      logger.e(request);
       return value.map((response) => LoginDto.fromLoginResponse(response));
     });
   }

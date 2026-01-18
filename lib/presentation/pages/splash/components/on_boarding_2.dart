@@ -83,7 +83,10 @@ class OnBoarding2 extends StatelessWidget {
                     ),
                     text: context.l10n.txt_your_journey_starts_here,
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, PathRouter.login);
+                      Navigator.pushReplacementNamed(
+                        context,
+                        PathRouter.register,
+                      );
                     },
                   ),
                 ],
