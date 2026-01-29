@@ -8,6 +8,9 @@ import 'package:multitasking/app/router/router.dart';
 import 'package:multitasking/app/theme/app_theme.dart';
 import 'package:multitasking/core/di/di.dart';
 import 'package:multitasking/presentation/bloc/translate/translate_cubit.dart';
+import 'package:provider/provider.dart';
+
+import '../presentation/pages/provider/couter.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -24,33 +27,36 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TranslateCubit, TranslateState>(
-      builder: (context, state) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          // localization
-          supportedLocales: L10n.all,
-          locale: state is ChangeTranslate
-              ? state.locale
-              : AppConfig.defaultLanguage,
-          localizationsDelegates: [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          // navigation
-          navigatorKey: getIt<GlobalKey<NavigatorState>>(
-            instanceName: 'navigatorKey',
-          ),
-          initialRoute: PathRouter.splash,
-          onGenerateRoute: AppRouter.generateRoutes,
-          // Theme
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.system,
-        );
-      },
+    return ChangeNotifierProvider(
+      create: (context) => CouterProvider(),
+      child: BlocBuilder<TranslateCubit, TranslateState>(
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            // localization
+            supportedLocales: L10n.all,
+            locale: state is ChangeTranslate
+                ? state.locale
+                : AppConfig.defaultLanguage,
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            // navigation
+            navigatorKey: getIt<GlobalKey<NavigatorState>>(
+              instanceName: 'navigatorKey',
+            ),
+            initialRoute: PathRouter.splash,
+            onGenerateRoute: AppRouter.generateRoutes,
+            // Theme
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: ThemeMode.system,
+          );
+        },
+      ),
     );
   }
 }
