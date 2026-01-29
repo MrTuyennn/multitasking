@@ -6,4 +6,5 @@ class PathRouter {
   static const String home = '/home';
   static const String editor = '/editor';
   static const String test = '/test';
+  static const String detail = '/detail';
 }

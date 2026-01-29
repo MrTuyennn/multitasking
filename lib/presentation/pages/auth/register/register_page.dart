@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:multitasking/app/router/path_router.dart';
 import 'package:multitasking/presentation/pages/auth/register/bloc/register_bloc.dart';
 import 'package:multitasking/presentation/pages/auth/register/bloc/register_event.dart';
 import 'package:multitasking/presentation/pages/auth/register/bloc/register_state.dart';
@@ -28,29 +29,38 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: ListView.builder(
                       itemCount: state.todo?.length,
                       itemBuilder: (context, index) {
-                        return Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          spacing: 10,
-                          children: [
-                            Text(index.toString()),
-                            Column(
-                              spacing: 10,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(state.todo?[index].title ?? ''),
-                                Text(state.todo?[index].description ?? ''),
-                                Divider(),
-                              ],
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                context.read<RegisterBloc>().add(
-                                  RegisterRemoveTodo(index),
-                                );
-                              },
-                              icon: Icon(Icons.close),
-                            ),
-                          ],
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              PathRouter.detail,
+                              arguments: state.todo?[index],
+                            );
+                          },
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            spacing: 10,
+                            children: [
+                              Text(index.toString()),
+                              Column(
+                                spacing: 10,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(state.todo?[index].title ?? ''),
+                                  Text(state.todo?[index].description ?? ''),
+                                  Divider(),
+                                ],
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  context.read<RegisterBloc>().add(
+                                    RegisterRemoveTodo(index),
+                                  );
+                                },
+                                icon: Icon(Icons.close),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     ),
@@ -60,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     context.read<RegisterBloc>().add(
                       RegisterAddTodo(
                         todo: Todo(
-                          id: '1',
+                          id: DateTime.now().millisecondsSinceEpoch.toString(),
                           title: 'nguyễn ngọc tuyên',
                           description: 'Mobile developer',
                         ),
